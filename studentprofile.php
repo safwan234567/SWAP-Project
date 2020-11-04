@@ -25,58 +25,71 @@ $stmt->close();
 ?>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Profile Page</title>
-		<link href="style.css" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-		<!-- MDB icon -->
-		<link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
-		<!-- Font Awesome -->
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-		<!-- Google Fonts Roboto -->
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-		<!-- Bootstrap core CSS -->
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<!-- Material Design Bootstrap -->
-		<link rel="stylesheet" href="css/mdb.min.css">
-		<!-- Your custom styles (optional) -->
-		<link rel="stylesheet" href="css/style.css">
-	</head>
-	<body class="studentloggedin">
+
+<head>
+	<meta charset="utf-8">
+	<title>Profile Page</title>
+	<link href="style.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+	<!-- MDB icon -->
+	<link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+	<!-- Google Fonts Roboto -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- Material Design Bootstrap -->
+	<link rel="stylesheet" href="css/mdb.min.css">
+	<!-- Your custom styles (optional) -->
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="studentloggedin">
 	<nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="studenthome.php">EzeTuition</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-		<a href="tutorprofile.php"><i class="fas fa-user-circle"></i>Profile</a>
-        </li>
-        <li class="nav-item">
-		<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
-        </li>
-        </li>
-      </ul>
-    </div>
-  </nav>
+		<a class="navbar-brand" href="studenthome.php">EzeTuition</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a href="tutorprofile.php"><i class="fas fa-user-circle"></i>Profile</a>
+				</li>
+				<li class="nav-item">
+					<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+				</li>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<main class="text-center my-5 center">
+	<div class="card" style="width: 40%; height: 50%; margin: auto;">
 		<div class="content">
 			<h2>Profile Page</h2>
 			<div>
 				<p>Your account details are below:</p>
-				<table>
+				<table class="center">
 					<tr>
 						<td>Username:</td>
 						<td><?=$_SESSION['name']?></td>
 					</tr>
+					<br>
 					<tr>
 						<td>Email:</td>
 						<td><?=$email?></td>
 					</tr>
 				</table>
+				<br>
+				<br>
 			</div>
 		</div>
-	</body>
+	</div>
+	<div class="card" style="width: 40%; height: 50%; margin: auto; margin-top:2%;">
+	<h2>Delete your account</h2>
+				<a href="#" class="btn btn-danger">DELETE ACCOUNT PERMANENTLY</a>
+	</div>
+	</main>
+</body>
+
 </html>

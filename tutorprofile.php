@@ -42,6 +42,10 @@ $stmt->close();
 		<link rel="stylesheet" href="css/mdb.min.css">
 		<!-- Your custom styles (optional) -->
 		<link rel="stylesheet" href="css/style.css">
+		<style>.center {
+  margin-left: auto;
+  margin-right: auto;
+}</style>
 	</head>
 	<body class="tutorloggedin">
 	<nav class="navbar navbar-expand-lg navbar-light">
@@ -62,21 +66,32 @@ $stmt->close();
       </ul>
     </div>
   </nav>
+  <main class="text-center my-5 center">
+	<div class="card" style="width: 40%; height: 50%; margin: auto;">
 		<div class="content">
 			<h2>Profile Page</h2>
 			<div>
 				<p>Your account details are below:</p>
-				<table>
+				<table class="center">
 					<tr>
 						<td>Username:</td>
 						<td><?=$_SESSION['name']?></td>
 					</tr>
+					<br>
 					<tr>
 						<td>Email:</td>
 						<td><?=$email?></td>
 					</tr>
 				</table>
+				<br>
+				<br>
 			</div>
 		</div>
+	</div>
+	<div class="card" style="width: 40%; height: 50%; margin: auto; margin-top:2%;">
+	<h2>Delete your account</h2>
+				<a href="#" class="btn btn-danger">DELETE ACCOUNT PERMANENTLY</a>
+	</div>
+  </main>
 	</body>
 </html>
