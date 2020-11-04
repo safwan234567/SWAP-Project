@@ -89,6 +89,11 @@ $stmt->close();
 		</div>
 	</div>
 	<div class="card" style="width: 40%; height: 50%; margin: auto; margin-top:2%;">
+	<h2>Your Courses(1)</h2>
+				<a href="editcourse.html" class="btn">Introduction to Web Design</a>
+				<a href="addcourse.php" class="btn btn-warning">Add Course</a>
+	</div>
+	<div class="card" style="width: 40%; height: 50%; margin: auto; margin-top:2%;">
 	<h2>Delete your account</h2>
 				<a href="#" class="btn btn-danger">DELETE ACCOUNT PERMANENTLY</a>
 	</div>
