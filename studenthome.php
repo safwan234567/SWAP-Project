@@ -98,7 +98,7 @@ if (!isset($_SESSION['studentloggedin'])) {
                 <!-- Text -->
                 <p class="card-text">Some quick example text to build on the card</p>
                 <!-- Button -->
-                <a href="#" class="btn btn-primary">Button</a>
+                <a href="coursedetails.html" class="btn btn-primary">Button</a>
             
               </div>
             
@@ -118,7 +118,7 @@ if (!isset($_SESSION['studentloggedin'])) {
                 <!-- Text -->
                 <p class="card-text">Some quick example text to build on the card</p>
                 <!-- Button -->
-                <a href="#" class="btn btn-primary">Button</a>
+                <a href="coursedetails.html" class="btn btn-primary">Button</a>
             
               </div>
             
