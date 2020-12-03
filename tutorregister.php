@@ -35,7 +35,7 @@ if (strlen($_POST['password']) > 20 || strlen($_POST['password']) < 5) {
 }
 
 // We need to check if the account with that username exists.
-if ($stmt = $con->prepare('SELECT id, password FROM tutors WHERE username = ?')) {
+if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE username = ?')) {
 	// Bind parameters (s = string, i = int, b = blob, etc), hash the password using the PHP password_hash function.
 	$stmt->bind_param('s', $_POST['username']);
 	$stmt->execute();
@@ -46,21 +46,25 @@ if ($stmt = $con->prepare('SELECT id, password FROM tutors WHERE username = ?'))
 		echo 'Username exists, please choose another!';
 	} else {
 		// Username doesnt exists, insert new account
-if ($stmt = $con->prepare('INSERT INTO tutors (username, password, email) VALUES (?, ?, ?)')) {
+if ($stmt = $con->prepare('INSERT INTO accounts (username, password, email, role) VALUES (?, ?, ?, ?)')) {
 	// We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
 	$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-	$stmt->bind_param('sss', $_POST['username'], $password, $_POST['email']);
+	$username = $_POST['username'];
+	$email = $_POST['email'];
+	$role = $_POST['role'];
+	$stmt->bind_param('ssss', $username, $password, $email, $role);
 	$stmt->execute();
     echo 'You have successfully registered, you can now login!';
-    header("refresh:2;url=tutorlogin.html");
+	header("refresh:2;url=tutorlogin.html");
+	$stmt->close();
 } else {
-	// Something is wrong with the sql statement, check to make sure tutors table exists with all 3 fields.
+	// Something is wrong with the sql statement, check to make sure accounts table exists with all 3 fields.
 	echo 'Could not prepare statement!';
 }
 	}
-	$stmt->close();
+	
 } else {
-	// Something is wrong with the sql statement, check to make sure tutors table exists with all 3 fields.
+	// Something is wrong with the sql statement, check to make sure accounts table exists with all 3 fields.
 	echo 'Could not prepare statement!';
 }
 $con->close();
