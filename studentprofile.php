@@ -15,11 +15,11 @@ if (mysqli_connect_errno()) {
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
 // We don't have the password or email info stored in sessions so instead we can get the results from the database.
-$stmt = $con->prepare('SELECT password, email FROM students WHERE id = ?');
+$stmt = $con->prepare('SELECT password, email, role FROM accounts WHERE id = ?');
 // In this case we can use the account ID to get the account info.
 $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
-$stmt->bind_result($password, $email);
+$stmt->bind_result($password, $email, $role);
 $stmt->fetch();
 $stmt->close();
 ?>
@@ -43,6 +43,10 @@ $stmt->close();
 	<link rel="stylesheet" href="css/mdb.min.css">
 	<!-- Your custom styles (optional) -->
 	<link rel="stylesheet" href="css/style.css">
+	<style>.center {
+  margin-left: auto;
+  margin-right: auto;
+}</style>
 </head>
 
 <body class="studentloggedin">
@@ -78,6 +82,10 @@ $stmt->close();
 					<tr>
 						<td>Email:</td>
 						<td><?=$email?></td>
+					</tr>
+					<tr>
+						<td>Account type:</td>
+						<td><?=$role?></td>
 					</tr>
 				</table>
 				<br>
