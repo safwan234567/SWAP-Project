@@ -10,6 +10,18 @@ CREATE TABLE IF NOT EXISTS `accounts` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
+CREATE TABLE IF NOT EXISTS `courses` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+  	`coursename` varchar(50) NOT NULL,
+  	`coursedesc` varchar(255) NOT NULL,
+  	`tutorinfo` varchar(255) NOT NULL,
+	`price` int(11) NOT NULL,
+	`numberoflectures` int(11) NOT NULL,
+	`myFile` mediumblob NOT NULL,
+
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
 //review table
 CREATE TABLE `product_review` (
   `reviewID` int(11) NOT NULL,
