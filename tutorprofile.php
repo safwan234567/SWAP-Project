@@ -91,6 +91,7 @@ $stmt->close();
 				<br>
 			</div>
 		</div>
+		<a href="#" type="submit" name="action" class="btn btn-danger">Edit account details</a>
 	</div>
 	<div class="card" style="width: 40%; height: 50%; margin: auto; margin-top:2%;">
 	<h2>Courses you are teaching(1)</h2>
@@ -99,7 +100,9 @@ $stmt->close();
 	</div>
 	<div class="card" style="width: 40%; height: 50%; margin: auto; margin-top:2%;">
 	<h2>Delete your account</h2>
-				<a href="#" class="btn btn-danger">DELETE ACCOUNT PERMANENTLY</a>
+	<form action="tutordelete.php" method ="POST">
+				<input type="submit" name="action" value="Delete" class="btn btn-danger">DELETE ACCOUNT PERMANENTLY</input>
+	</form>
 	</div>
   </main>
 	</body>

@@ -95,8 +95,9 @@ $stmt->close();
 	</div>
 	<div class="card" style="width: 40%; height: 50%; margin: auto; margin-top:2%;">
 	<h2>Delete your account</h2>
-				<a href="#" class="btn btn-danger">DELETE ACCOUNT PERMANENTLY</a>
-	</div>
+	<form action="studentdelete.php" method ="POST">
+				<input type="submit" name="action" value="Delete" class="btn btn-danger">DELETE ACCOUNT PERMANENTLY</input>
+	</form>	</div>
 	</main>
 </body>
 
