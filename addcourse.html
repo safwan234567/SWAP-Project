@@ -85,7 +85,7 @@
 <body class="tutorloggedin">
 <br>
     <div class="container">
-        <h1>Edit course</h1>
+        <h1>Add course</h1>
         <p>Fill in the options below</p>
       </div>
 <br>
@@ -99,8 +99,8 @@ form {
     display: inline-block;
     
 }</style>
-<form action="editcourse.php" method="post" autocomplete="off">
-  <div class="editcourse">
+<form action="addcourse.php" method="post" autocomplete="off">
+  <div class="addcourse">
       
       <label for="coursename">
         <i class="fas fa-user"></i>
@@ -133,12 +133,8 @@ form {
       <br>
       <br>  
       
-      <input type="file" id="myFile" name="filename">
-
-      <br>
-      <br>
-
-      <input type="submit" value="Edit course">
+        <input type="submit" value="Add course" name="submit">
+      </form>
       <br>
 	</form>
 <br>

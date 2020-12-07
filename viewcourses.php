@@ -83,10 +83,10 @@
 </head>
 
 <body class="tutorloggedin">
-<br>
+    <br>
     <div class="container">
-        <h1>Edit course</h1>
-        <p>Fill in the options below</p>
+        <h1>Courses</h1>
+        <p>Check out courses!</p>
       </div>
 <br>
 <div class="card">
@@ -99,58 +99,70 @@ form {
     display: inline-block;
     
 }</style>
-<form action="editcourse.php" method="post" autocomplete="off">
-  <div class="editcourse">
-      
-      <label for="coursename">
-        <i class="fas fa-user"></i>
-      </label>
-      <input type="text" name="coursename" placeholder="Course Name:" id="coursename" required>
-      <br>
-      
-      <label for="coursedesc">
-        <i class="fas fa-book"></i>
-      </label>
-      <input type="coursedesc" name="coursedesc" placeholder="Course Description:" id="coursedesc" required>
-      <br>
 
-      <label for="tutorinfo">
-        <i class="fas fa-address-book"></i>
-      </label>
-      <input type="text" name="tutorinfo" placeholder="Tutor information:" id="tutorinfo" required>
-      <br>
+        
 
-      <label for="price">
-        <i class="fas fa-dollar-sign"></i>
-      </label>
-      <input type="text" name="price" placeholder="Price:" id="price" required>
-      <br>
 
-      <label for="numberoflectures">
-        <i class="fas fa-book-open"></i>
-      </label>
-      <input type="text" name="numberoflectures" placeholder="Number of lectures:" id="numberoflectures" required>
-      <br>
-      <br>  
-      
-      <input type="file" id="myFile" name="filename">
+  
+  
+  
+  </body>
+  </html>
+        
+  
+  
+  
+  </body>
+  </html>
+  <?php
+// We need to use sessions, so you should always start sessions using the below code.
+session_start();
+// If the user is not logged in redirect to the login page...
+if (!isset($_SESSION['tutorloggedin'])) {
+	header('Location: index.html');
+	exit;
+}
+$DATABASE_HOST = 'localhost';
+$DATABASE_USER = 'root';
+$DATABASE_PASS = '';
+$DATABASE_NAME = 'tuitionwebsite';
+$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+if (mysqli_connect_errno()) {
+	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
+}
+else {
+    $query= $con->prepare("Select coursename, coursedesc, tutorinfo, price, numberoflectures, myFile from courses");
+    $query->execute();
+    $query->store_result();
+    $query->bind_result($coursename, $coursedesc, $tutorinfo, $price, $numberoflectures, $myFile);
+    if($query->num_rows === 0) exit('No rows');
+    echo "<table border=1>";
+    echo "<tr><td>Course name</td><td>Course Description</td><td>Tutor Information</td><td>Price</td><td>Number of Lectures</td><td>Lecture files</td><td></td>"; 
+    while($query->fetch()){
+        echo "<tr><td>". $coursename."</td><td>". $coursedesc."</td><td>". $tutorinfo. "</td><td>". $price. "</td><td>". $numberoflectures."</td><td>". $myFile."</td><td>";
+        //edit course button
+        echo "</td><td><form action=\"editcourse.html\" method =\"post\">";
+        echo '<input type=hidden name="coursename" value="'.$coursename.'">';
+        echo "<input type=\"submit\" name=\"edit\" value=\"Edit\"></form></td><td>";
+    
+        //delete course button
+        echo "</td><td><form action=\"deletecourse.php\" method =\"post\">";
+        echo '<input type=hidden name="coursename" value="'.$coursename.'">';
+        echo "<input type=\"submit\" name=\"delete\" value=\"Delete\"></form></td></tr>";
+    }
 
-      <br>
-      <br>
+    echo "</table>";
+    
+}
+$con->close();
 
-      <input type="submit" value="Edit course">
-      <br>
-	</form>
+?>
+<html>
 <br>
+<form action="addcourse.html" method="post">
+<div class="addcourse">
+<input type="submit" value="Add course" name="submit">
+</form>
 </div>
-
-
-
-</body>
-</html>
-      
-
-
-
-</body>
+<br>
 </html>

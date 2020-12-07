@@ -14,125 +14,66 @@ $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_
 if (mysqli_connect_errno()) {
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
-// We don't have the password or email info stored in sessions so instead we can get the results from the database.
-$stmt = $con->prepare('SELECT password, email FROM tutors WHERE id = ?');
-// In this case we can use the account ID to get the account info.
-$stmt->bind_param('i', $_SESSION['id']);
-$stmt->execute();
-$stmt->bind_result($password, $email);
-$stmt->fetch();
-$stmt->close();
-?>
-<!DOCTYPE html>
-<html>
 
-<head>
-	<meta charset="utf-8">
-	<title>Home Page</title>
-	<link href="style.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-	<!-- MDB icon -->
-	<link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
-	<!-- Font Awesome -->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-	<!-- Google Fonts Roboto -->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-	<!-- Bootstrap core CSS -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<!-- Material Design Bootstrap -->
-	<link rel="stylesheet" href="css/mdb.min.css">
-	<!-- Your custom styles (optional) -->
-	<link rel="stylesheet" href="css/style.css">
-	<style>
-    .featured-courses > .row {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-      }
-      .featured-courses > .row > .col-4 {
-        display: inline-block;
-      }
-      </style>
-</head>
-
-<body class="tutorloggedin">
-    <!-- Navbar -->
-	<nav class="navbar navbar-expand-lg navbar-light">
-		<a class="navbar-brand" href="tutorhome.php">EzeTuition</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav">
-				<li class="nav-item">
-					<a href="tutorprofile.php"><i class="fas fa-user-circle"></i>Profile</a>
-				</li>
-				<li class="nav-item">
-					<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
-				</li>
-				</li>
-			</ul>
-		</div>
-    </nav>
-    <!-- Navbar end -->
-    <br>
-    <div class="container">
-        <h1>Add course</h1>
-        <p>Fill in the options below</p>
-      </div>
-<br>
-<div class="card">
-    <br>
-    <style type="text/css">
-    body {
-    text-align: center;
+// Now we check if the data was submitted, isset() function will check if the data exists.
+if (!isset($_POST['coursename'], $_POST['coursedesc'], $_POST['tutorinfo'], $_POST['price'], $_POST['numberoflectures'])) {
+	// Could not get the data that should have been sent.
+	exit('Please complete the form!');
 }
-form {
-    display: inline-block;
-    width: 50%;
-    margin: auto;
-}</style>
-<form action="/addcourse.php">
-    <div class="form-group row">
-        <label for="coursename" class="col-sm-2 col-form-label">Course name:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="coursename" placeholder="Name of course">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="coursedesc" class="col-sm-2 col-form-label">Course description:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="coursedesc" placeholder="Give a short descrition of the course">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="tutorinfo" class="col-sm-2 col-form-label">Tutor information:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="tutorinfo" placeholder="Describe yourself!">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="price" class="col-sm-2 col-form-label">Price:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="price" placeholder="Price">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="numberoflectures" class="col-sm-2 col-form-label">Number of lectures:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="numberoflectures" placeholder="Number of lectures">
-        </div>
-      </div>
-    
-        <input type="file" id="myFile" name="filename">
-      <br>
-      <br>
-    <input type="submit" value="Add course">
-</form>
-<br>
-</div>
+// Make sure the submitted registration values are not empty.
+if (empty($_POST['coursename']) || empty($_POST['coursedesc']) || empty($_POST['tutorinfo']) || empty($_POST['price']) || empty($_POST['numberoflectures'])) {
+	// One or more values are empty.
+	exit('Please complete the form');
+}
 
+if (preg_match('/[A-Za-z0-9]+/', $_POST['coursename']) == 0) {
+    exit('coursename is not valid!');
+}
 
+if (preg_match('/[A-Za-z0-9]+/', $_POST['coursedesc']) == 0) {
+    exit('coursedesc is not valid!');
+}
 
-</body>
-</html>
+if (preg_match('/[A-Za-z0-9]+/', $_POST['tutorinfo']) == 0) {
+    exit('tutorinfo is not valid!');
+}
+if (preg_match('/^[0-9]+(?:\.[0-9]+)?$/', $_POST['price']) == 0) {
+    exit('price is not valid!');
+}
+
+if (preg_match('/[0-9]+/', $_POST['numberoflectures']) == 0) {
+    exit('numberoflectures is not valid!');
+}
+
+// We need to check if the account with that username exists.
+if ($stmt = $con->prepare('SELECT id FROM courses WHERE coursename = ?')) {
+	// Bind parameters (s = string, i = int, b = blob, etc), hash the password using the PHP password_hash function.
+	$stmt->bind_param('s', $_POST['coursename']);
+	$stmt->execute();
+	$stmt->store_result();
+	// Store the result so we can check if the account exists in the database.
+	if ($stmt->num_rows > 0) {
+		// Username already exists
+		echo 'coursename exists, please choose another!';
+	} else {
+		// Username doesnt exists, insert new account
+
+if ($stmt = $con->prepare('INSERT INTO courses (coursename, coursedesc, tutorinfo, price, numberoflectures) VALUES (?, ?, ?, ?, ?)')) {
+	// We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
+	$stmt->bind_param('sssii', $_POST['coursename'], $_POST['coursedesc'], $_POST['tutorinfo'], $_POST['price'], $_POST['numberoflectures']);
+	$stmt->execute();
+    echo 'You have successfully created a course! Redirecting you in a bit!';
+    header("refresh:1;url=viewcourses.php");
+} else {
+	// Something is wrong with the sql statement, check to make sure students table exists with all 3 fields.
+	echo 'Could not prepare statement!';
+}
+	}
+	$stmt->close();
+} else {
+	// Something is wrong with the sql statement, check to make sure students table exists with all 3 fields.
+	echo 'Could not prepare statement!';
+}
+$con->close();
+
+?>
