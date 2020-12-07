@@ -9,3 +9,35 @@ CREATE TABLE IF NOT EXISTS `accounts` (
 	`role` varchar(100) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+//review table
+CREATE TABLE `product_review` (
+  `reviewID` int(11) NOT NULL,
+  `userName` varchar(255) NOT NULL,
+  `productName` varchar(255) NOT NULL,
+  `productRating` int(5) NOT NULL,
+  `productReview` varchar(255) NOT NULL,
+  `datePosted` varchar(25) NOT NULL,
+  `productRecommendation` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `product_review`
+--
+ALTER TABLE `product_review`
+  ADD PRIMARY KEY (`reviewID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `product_review`
+--
+ALTER TABLE `product_review`
+  MODIFY `reviewID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+COMMIT;
