@@ -88,10 +88,25 @@ $stmt->close();
 					</tr>
 				</table>
 				<br>
+				<form action="modifyaccount.php" method ="POST">
+				<table class="center">
+
+					<tr>
+						<td>Update email : </td>
+						<td><input type="email" name="email" id="email"/></td> 
+					</tr>
+					<tr>
+					<td></td>
+					<td><input type="submit" name="update" value="Update"/></td>
+					</tr>
+				</table>
+				</form>
 				<br>
 			</div>
 		</div>
-		<a href="#" type="submit" name="action" class="btn btn-danger">Edit account details</a>
+		<form action="modifyaccount.php" method ="POST">
+		<a type="submit" name="update" value="Update" class="btn btn-danger">Edit account details</a>
+		</form>
 	</div>
 	<div class="card" style="width: 40%; height: 50%; margin: auto; margin-top:2%;">
 	<h2>Courses you are teaching(1)</h2>
