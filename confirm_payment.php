@@ -1,6 +1,8 @@
 <?php 
-session_regenerate_id();
+session_start();
+
 $con = mysqli_connect("localhost","root","","tuitionwebsite");
+
 if (!$con){
     die('Could not connect: ' . mysqli_connect_errno());
 }
@@ -8,6 +10,32 @@ else{
     echo "connection success". "<br>";
 }
 
+
+
+
+// no data recieved
+if (!isset($_POST['name'], $_POST['number'], $_POST['expiry'], $_POST['cvv'])) {
+    exit('Uhoh! form seems empty.');
+}
+// make sure form not empty
+if (empty($_POST['name']) || empty($_POST['number']) || empty($_POST['expiry']) || empty($_POST['cvv'])) {
+    exit('Uhoh! form seems empty.');
+}
+
+if (preg_match('/[A-Za-z]+/', $_POST['name']) == 0) {
+    exit('Enter a valid name.');
+}
+
+if (preg_match('/[0-9]{16}/', $_POST['number']) == 0) {
+    exit('Enter a 16 digit card number.');
+}
+
+if (preg_match('#^(0[1-9]|1[0-2])/(2[0-9])$#', $_POST['expiry']) == 0) {
+    exit('Enter a valid date in MM/YY format');
+}
+if (preg_match('/^[0-9]{3}$/', $_POST['cvv']) == 0) {
+    exit('Enter a 3 digit number');
+}
 
 ?>
 
@@ -53,7 +81,7 @@ if ($query->execute()){  //execute query
 <div class="center">
 <h1>confirm your details</h1><br>
 
-function functionName() {
+
  
 
 <?php 
@@ -85,7 +113,7 @@ $query->fetch();
 <input type='hidden' name='name' value='<?php echo $name?>'>
 <input type="submit" class="w3-button w3-black" value="Use another card">
 </form>
-<form action="index.php" method="post">
+<form action="courselist.html" method="post">
 <input type="submit" class="w3-button w3-black" value="confirm">
 
 
