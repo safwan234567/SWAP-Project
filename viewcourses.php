@@ -141,7 +141,7 @@ else {
     while($query->fetch()){
         echo "<tr><td>". $coursename."</td><td>". $coursedesc."</td><td>". $tutorinfo. "</td><td>". $price. "</td><td>". $numberoflectures."</td><td>". $myFile."</td><td>";
         //edit course button
-        echo "</td><td><form action=\"editcourse.html\" method =\"post\">";
+        echo "</td><td><form action=\"editcourses.php\" method =\"post\">";
         echo '<input type=hidden name="coursename" value="'.$coursename.'">';
         echo "<input type=\"submit\" name=\"edit\" value=\"Edit\"></form></td><td>";
     
