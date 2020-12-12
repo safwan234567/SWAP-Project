@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Review</title>
+<title>Add Review</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -57,24 +57,36 @@
         width: 40%;
         margin: auto;
     }</style>
-            <form action="/addreview.html">
+	
+			
+</body>
+
+<form action="review.php" method ="POST">
+
+<input type="radio" name="action" value="Add">Add
+<input type="radio" name="action" value="Update">Update
+<input type="radio" name="action" value="Delete">Delete
+<p>
+<form action="/addreview.html">
+
+
+<div style="padding-bottom: 18px;font-size : 24px;">Review ID</div>
+            <div style="padding-bottom: 18px;">Review ID<span style="color: red;"> *</span><br/>
+            <input type="text" id="data_2" name="reviewID" style="max-width : 1000px;" class="form-control"/>
+            </div><br>
             
-            <div style="padding-bottom: 18px;font-size : 24px;">Product Review</div>
+            <div style="padding-bottom: 18px;font-size : 24px;">Reviewer</div>
             <div style="padding-bottom: 18px;">Reviewer<span style="color: red;"> *</span><br/>
-            <input type="text" id="data_2" name="data_2" style="max-width : 450px;" class="form-control"/>
+            <input type="text" id="data_2" name="userName" style="max-width : 1000px;" class="form-control"/>
             </div>
-            <div style="padding-bottom: 18px;">Which product did you buy?<br/>
-            <select id="data_3" name="data_3" style="max-width : 450px;" class="form-control">
-            <option>Product 1</option>
-            <option>Product 2</option>
-            <option>Product 3</option>
-            <option>Product 4</option>
-            <option>Product 5</option>
-            </select>
+            
+            <div style="padding-bottom: 18px;font-size : 24px;">Product Bought</div>
+            <div style="padding-bottom: 18px;">Product<span style="color: red;"> *</span><br/>
+            <input type="text" id="data_2" name="productName" style="max-width : 1000px;" class="form-control"/>
             </div>
 
             <div style="padding-bottom: 18px;">Product Rating<span style="color: red;"> *</span><br/>
-            <select id="data_4" name="data_4" style="max-width : 150px;" class="form-control">
+            <select id="data_4" name="productRating" style="max-width : 1000px;" class="form-control">
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -83,21 +95,33 @@
             </select>
             </div>
 
-
+			<div style="padding-bottom: 18px;font-size : 24px;">Reviews</div>
             <div style="padding-bottom: 20px;">Review<span style="color: red;"> *</span><br/>
-            <textarea id="data_8" false name="data_8" style="width : 440px;" rows="13" class="form-control"></textarea>
+            <textarea id="text" name="productReview" style="width : 480px;" rows="13" class="form-control"></textarea>
             </div>
-
+            
+               <div style="padding-bottom: 18px;font-size : 24px;">Date Posted</div>
+            <div style="padding-bottom: 18px;">Date<span style="color: red;"> *</span><br/>
+            <input type="text" id="data_2" name="datePosted" style="max-width : 1000px;" class="form-control"/>
+            
             <div style="padding-bottom: 18px;">Would you recommend this product?<br/>
-            <span><input type="radio" id="data_9_0" name="data_9" value="Yes"/> Yes</span><br/>
-            <span><input type="radio" id="data_9_1" name="data_9" value="No"/> No</span><br/>
-            <span><input type="radio" id="data_9_2" name="data_9" value="I am not sure"/> I am not sure</span><br/>
+            <span><input type="radio" id="data_9_0" name="productRecommendation" value="Yes"/> Yes</span><br/>
+            <span><input type="radio" id="data_9_1" name="productRecommendation" value="No"/> No</span><br/>
+            <span><input type="radio" id="data_9_2" name="productRecommendation" value="I am not sure"/> I am not sure</span><br/>
             </div>
-
-            <div style="padding-bottom: 18px;"><input name="skip_Submit" value="Submit" type="submit"/></div>
-
-    </div>
-
+            
+            </div>
+            
+            <tr>
+		<td></td>
+		<td><input type="submit" value="action"/></td>
+	</tr>
+	<form action= "review.php" method= "POST" >
+	<input type= "submit" value="ListAll">
+</form>
+	
+</div>
+</form> 
 
 </body>
 </html>
