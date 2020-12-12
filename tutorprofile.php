@@ -15,11 +15,11 @@ if (mysqli_connect_errno()) {
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
 // We don't have the password or email info stored in sessions so instead we can get the results from the database.
-$stmt = $con->prepare('SELECT password, email, role FROM accounts WHERE id = ?');
+$stmt = $con->prepare('SELECT password, email, firstname, lastname, phonenumber, role FROM accounts WHERE id = ?');
 // In this case we can use the account ID to get the account info.
 $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
-$stmt->bind_result($password, $email, $role);
+$stmt->bind_result($password, $email, $firstname, $lastname, $phonenumber, $role);
 $stmt->fetch();
 $stmt->close();
 ?>
@@ -83,30 +83,52 @@ $stmt->close();
 						<td><?=$email?></td>
 					</tr>
 					<tr>
+						<td>First Name:</td>
+						<td><?=$firstname?></td>
+					</tr>
+					<tr>
+						<td>Last Name:</td>
+						<td><?=$lastname?></td>
+					</tr>
+					<tr>
+						<td>Phone Number:</td>
+						<td><?=$phonenumber?></td>
+					</tr>
+					<tr>
 						<td>Account type:</td>
 						<td><?=$role?></td>
 					</tr>
 				</table>
 				<br>
-				<form action="modifyaccount.php" method ="POST">
+				<form action="tutorupdate.php" method ="POST">
 				<table class="center">
 
 					<tr>
 						<td>Update email : </td>
-						<td><input type="email" name="email" id="email"/></td> 
+						<td><input type="text" name="email" id="email" value="<?=$email?>"/></td> 
+					</tr>
+					<tr>
+						<td>Update first name : </td>
+						<td><input type="text" name="firstname" id="firstname" value="<?=$firstname?>"/></td> 
+					</tr>
+					<tr>
+						<td>Update Last name : </td>
+						<td><input type="text" name="lastname" id="lastname" value="<?=$lastname?>"/></td> 
+					</tr>
+					<tr>
+						<td>Update phone number : </td>
+						<td><input type="text" name="phonenumber" id="phonenumber" value="<?=$phonenumber?>"/></td> 
 					</tr>
 					<tr>
 					<td></td>
-					<td><input type="submit" name="update" value="Update"/></td>
 					</tr>
+					<td><input class="btn btn-warning" type="submit" name="update" value="update account details"/></td>
 				</table>
 				</form>
 				<br>
 			</div>
 		</div>
-		<form action="modifyaccount.php" method ="POST">
-		<a type="submit" name="update" value="Update" class="btn btn-danger">Edit account details</a>
-		</form>
+		
 	</div>
 	<div class="card" style="width: 40%; height: 50%; margin: auto; margin-top:2%;">
 	<h2>Courses you are teaching(1)</h2>
