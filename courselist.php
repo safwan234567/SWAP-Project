@@ -2,7 +2,7 @@
 // We need to use sessions, so you should always start sessions using the below code.
 session_start();
 // If the user is not logged in redirect to the login page...
-if (!isset($_SESSION['tutorloggedin'])) {
+if (!isset($_SESSION['studentloggedin'])) {
 	header('Location: index.html');
 	exit;
 }
@@ -110,16 +110,23 @@ else {
   
                   <p class="card-text" style="font-size: small;">'.$coursedesc.'</p>
   
-                  <p class="card-text" style="font-size: x-large; color: red;">'.$price.'</p>
+                  <p class="card-text" style="font-size: x-large; color: red;">$'.$price.'</p>
    
                   
                   
                   <div class="row">
                       <div class="column"></div>
-                      <a href="payment.html" type="button" class="btn btn-warning" style="position: relative; bottom: 10px;">Add to cart</a>
+                      <form action="payment.php" method="POST">
+                      <input type="hidden" name="coursename" value="'.$coursename.'">
+                      
+                      </form>
+                      <input type="submit" name="addtocart" value="Add to Cart" class="btn btn-warning" style="position: relative; bottom: 10px;">
                       <div class="column"></div>
-                      <a href="coursedetails.html" type="button" class="btn btn-amber" style="position: relative; bottom: 10px;">View Details</a>
-                    </div>
+                      <form action="coursedetails.php" method="POST">
+                      <input type="hidden" name="coursename" value="'.$coursename.'">
+                      <input type="submit" name="viewdetails" value="View Details" class="btn btn-amber" style="position: relative; bottom: 10px;">
+                    </form>
+                      </div>
                   </div>
                 </div>
               </div>
