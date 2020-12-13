@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
 
 CREATE TABLE IF NOT EXISTS `courses` (
 	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`teacherID`(11) NOT NULL,
   	`coursename` varchar(50) NOT NULL,
   	`coursedesc` varchar(255) NOT NULL,
   	`tutorinfo` varchar(255) NOT NULL,
