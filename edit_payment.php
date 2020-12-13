@@ -1,12 +1,5 @@
 <?php 
-session_regenerate_id();
-$con = mysqli_connect("localhost","root","","tuitionwebsite");
-if (!$con){
-    die('Could not connect: ' . mysqli_connect_errno());
-}
-else{
-    echo "connection success". "<br>";
-}
+
 
 $name=$_POST["name"];
 $number=$_POST["number"];
@@ -134,17 +127,13 @@ span.price {
 <div class="row">
 <div class="col-75">
 <div class="container">
-<form action="edit_payment.php" method="post">
-
+<form action="edit_pay.php" method="post">
 <div class="row">
-
-
 <input type="hidden" name="id">
 <label for="cname">Name on Card</label>
 <input type="text" id="cname"  value="<?php echo $name?>" name="name">
 <label for="ccnum">Credit card number</label>
 <input type="text" id="ccnum"  value="<?php echo $number?>" name="number">
-
 <div class="row">
 <div class="col-50">
 <label for="expdate">Expiry</label>
@@ -163,17 +152,3 @@ span.price {
 </div>
 </body>
 </html>
-<?php 
-$name=$_POST["name"];
-$number=$_POST["number"];
-$expiry=$_POST["expiry"];
-$cvv=$_POST["cvv"];
-
-$query=$con->prepare("UPDATE payment_detail SET name=?, number=?, expiry=?, cvv=? WHERE name=?");
-$query->bind_param('sssss' , $name, $number, $expiry, $cvv, $name);
-if ($query->execute()){  //execute query
-    echo "Query executed. Database updated. ";
-}else{
-    echo $query->error;
-    echo "Error executing query.";
-}?>
