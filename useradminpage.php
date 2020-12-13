@@ -121,23 +121,23 @@ if (mysqli_connect_errno()) {
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
 else {
-    $query= $con->prepare("Select firstname, lastname, username, password, phonenumber, email, role from accounts");
+    $query= $con->prepare("Select id, firstname, lastname, username, password, phonenumber, email, role from accounts");
     $query->execute();
     $query->store_result();
-    $query->bind_result($firstname, $lastname, $username, $password, $phonenumber, $email, $role);
+    $query->bind_result($id, $firstname, $lastname, $username, $password, $phonenumber, $email, $role);
     if($query->num_rows === 0) exit('No rows');
     echo "<table border=1>";
-    echo "<tr><td>Course name</td><td>Course Description</td><td>Tutor Information</td><td>Price</td><td>Number of Lectures</td><td>Lecture files</td><td></td>"; 
+    echo "<tr><td>ID</td><td>First name</td><td>Last name</td><td>Username</td><td>Password</td><td>Phone Number</td><td>Email</td><td></td>"; 
     while($query->fetch()){
-        echo "<tr><td>". $firstname."</td><td>". $lastname."</td><td>". $username. "</td><td>". $password. "</td><td>". $phonenumber."</td><td>". $email."</td><td>". $role."</td><td>";;
+        echo "<tr><td>". $id."</td><td>". $firstname."</td><td>". $lastname."</td><td>". $username. "</td><td>". $password. "</td><td>". $phonenumber."</td><td>". $email."</td><td>". $role."</td><td>";
         //edit course button
         echo "</td><td><form action='useradmineditpage.php' method ='post'>";
-        echo '<input type=hidden name="username" value="'.$username.'">';
+        echo '<input type=hidden name="id" value="'.$id.'">';
         echo "<input type='submit' name='edit' value='Edit'></form></td><td>";
 
         //delete course button
         echo "</td><td><form action='useradmindelete.php' method ='post'>";
-        echo '<input type=hidden name="username" value="'.$username.'">';
+        echo '<input type=hidden name="id" value="'.$id.'">';
         echo "<input type='submit' name='delete' value='Delete'></form></td></tr>";
     }
 

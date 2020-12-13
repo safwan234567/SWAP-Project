@@ -4,9 +4,9 @@ if (!$con){
     die('Could not connect: ' . mysqli_connect_errno());
 }
 
-$username = $_POST["username"];
-$query= $con->prepare("Delete from accounts where username = ?");
-$query->bind_param('s', $username);
+$id = $_POST["id"];
+$query= $con->prepare("Delete from accounts where id = ?");
+$query->bind_param('i', $id);
 
 if ($query->execute()){  //execute query
     echo "Query executed. Database updated. ";
