@@ -64,10 +64,11 @@ $name=$_POST["name"];
 $number=$_POST["number"];
 $expiry=$_POST["expiry"];
 $cvv=$_POST["cvv"];
+$hash_number= hash('md5', $number);
 
 //add
 $query= $con->prepare("INSERT INTO payment_detail VALUES (?,?,?,?,?)");
-$query->bind_param('issss', $id, $name, $number, $expiry, $cvv); //bind the parameters
+$query->bind_param('issss', $id, $name, $hash_number, $expiry, $cvv); //bind the parameters
 
 if ($query->execute()){  //execute query
     echo "Query executed. added to database. ";
