@@ -1,5 +1,9 @@
 <?php
-session_regenerate_id();
+session_start();
+if(!isset($_SESSION['studentloggedin'])) {
+    header('Location: index.html');
+    exit;
+}
 $con = mysqli_connect("localhost","root","","tuitionwebsite");
 if (!$con){
     die('Could not connect: ' . mysqli_connect_errno());
