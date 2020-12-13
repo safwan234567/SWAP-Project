@@ -86,7 +86,7 @@
     <br>
     <div class="container">
         <h1>Courses</h1>
-        <p>Check out courses!</p>
+        <p>ADMIN COURSE PAGE</p>
       </div>
 <br>
 <div class="card">
@@ -114,14 +114,6 @@ form {
   
   </body>
   </html>
-  <html>
-<form action="addcourse.html" method="post">
-<div class="addcourse">
-<input type="submit" value="Add course" name="submit">
-</form>
-</div>
-<br>
-</html>
   <?php
 // We need to use sessions, so you should always start sessions using the below code.
 session_start();
@@ -139,9 +131,7 @@ if (mysqli_connect_errno()) {
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
 else {
-    $teacherID=$_SESSION['teacherID'];
-    $query= $con->prepare("Select coursename, coursedesc, tutorinfo, price, numberoflectures, myFile from courses WHERE teacherID=?");
-    $query->bind_param('i',$teacherID);
+    $query= $con->prepare("Select coursename, coursedesc, tutorinfo, price, numberoflectures, myFile from courses");
     $query->execute();
     $query->store_result();
     $query->bind_result($coursename, $coursedesc, $tutorinfo, $price, $numberoflectures, $myFile);
@@ -167,3 +157,12 @@ else {
 $con->close();
 
 ?>
+<html>
+<br>
+<form action="addcourse.html" method="post">
+<div class="addcourse">
+<input type="submit" value="Add course" name="submit">
+</form>
+</div>
+<br>
+</html>

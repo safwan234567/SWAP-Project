@@ -58,9 +58,9 @@ if ($stmt = $con->prepare('SELECT id FROM courses WHERE coursename = ?')) {
 	} else {
 		// Username doesnt exists, insert new account
 
-if ($stmt = $con->prepare('INSERT INTO courses (coursename, coursedesc, tutorinfo, price, numberoflectures) VALUES (?, ?, ?, ?, ?)')) {
+if ($stmt = $con->prepare('INSERT INTO courses (teacherID, coursename, coursedesc, tutorinfo, price, numberoflectures) VALUES (?,?,? ,?,?,?)')) {
 	// We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
-	$stmt->bind_param('sssii', $_POST['coursename'], $_POST['coursedesc'], $_POST['tutorinfo'], $_POST['price'], $_POST['numberoflectures']);
+	$stmt->bind_param('ssssii', $_SESSION['teacherID'], $_POST['coursename'], $_POST['coursedesc'], $_POST['tutorinfo'], $_POST['price'], $_POST['numberoflectures']);
 	$stmt->execute();
     echo 'You have successfully created a course! Redirecting you in a bit!';
     header("refresh:1;url=viewcourses.php");
