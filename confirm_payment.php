@@ -1,6 +1,9 @@
-<?php 
+<?php
 session_start();
-
+if(!isset($_SESSION['studentloggedin'])) {
+    header('Location: index.html');
+    exit;
+}
 $con = mysqli_connect("localhost","root","","tuitionwebsite");
 
 if (!$con){
