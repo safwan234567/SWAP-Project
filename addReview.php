@@ -1,3 +1,13 @@
+<?php
+// We need to use sessions, so you should always start sessions using the below code.
+session_start();
+// If the user is not logged in redirect to the login page...
+if (!isset($_SESSION['tutorloggedin'])) {
+	header('Location: index.html');
+	exit;
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,11 +71,14 @@
 			
 </body>
 
+
+
 <form action="review.php" method ="POST">
 
 <input type="radio" name="action" value="Add">Add
 <input type="radio" name="action" value="Update">Update
 <input type="radio" name="action" value="Delete">Delete
+<input type="radio" name="action" value="listAll">List All
 <p>
 <form action="/addreview.html">
 
@@ -116,9 +129,9 @@
 		<td></td>
 		<td><input type="submit" value="action"/></td>
 	</tr>
-	<form action= "review.php" method= "post" >
-	<input type= "submit" value="List All">
-</form>
+
+
+
 	
 </div>
 </form> 
