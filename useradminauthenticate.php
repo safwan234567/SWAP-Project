@@ -1,4 +1,4 @@
-<?php
+<?php /*
 session_start();
 // Change this to your connection info.
 $DATABASE_HOST = 'localhost';
@@ -56,13 +56,13 @@ if ($stmt = $con->prepare('SELECT id, password, role FROM accounts WHERE usernam
             // Verification success! User has loggedin!
             // Create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server.
             
-if ($role=="student"){
+if ($role=="useradmin"){
             session_regenerate_id();
         
-            $_SESSION['studentloggedin'] = TRUE;
+            $_SESSION['useradminloggedin'] = TRUE;
             $_SESSION['name'] = $_POST['username'];
             $_SESSION['id'] = $id;
-            header('Location: studenthome.php');
+            header('Location: useradminpage.php');
             
         } else {
             // Incorrect password

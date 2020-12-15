@@ -53,28 +53,24 @@ else {
 </head>
 <body>
 
-    <header>
-        <!-- Start your project here-->
-        <nav class="navbar navbar-expand-lg navbar-light">
-          <div class="container">
-            <a class="navbar-brand" href="index.html">EzeTuition</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="/tuitionwebsite/tutorlogin.html">Login as Tutor<span
-                      class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/tuitionwebsite/tutorregister.html">Tutor Registration</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
+<body class="studentloggedin">
+<nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="studenthome.php">EzeTuition</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a href="studentprofile.php"><i class="fas fa-user-circle"></i>Profile</a>
+      </li>
+      <li class="nav-item">
+        <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+      </li>
+      </li>
+    </ul>
+  </div>
+</nav>
     
       </header>
   <!-- Start your project here-->  

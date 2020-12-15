@@ -1,0 +1,37 @@
+<head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <!-- MDB icon -->
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href="css/mdb.min.css">
+    <!-- Your custom styles (optional) -->
+    <link rel="stylesheet" href="css/style.css">
+    <script src='https://www.google.com/recaptcha/api.js' async defer></script>
+</head>
+
+<body>
+<div class="login">
+    <h1>Admin Login</h1>
+    <form action="useradminauthenticate.php" method="post">
+        <label for="username">
+            <i class="fas fa-user"></i>
+        </label>
+        <input type="text" name="username" placeholder="Username" id="username" required>
+        <label for="password">
+            <i class="fas fa-lock"></i>
+        </label>
+        <input type="password" name="password" placeholder="Password" id="password" required>
+        <div class="g-recaptcha" data-sitekey="6LfOowQaAAAAAA5bHVZQgmCmicMJU-rsZcni8oJU"></div>
+        <input type="submit" value="Login">
+    </form>
+</div>
+</body>

@@ -22,6 +22,26 @@ if (empty($_POST['firstname']) || empty($_POST['lastname']) || empty($_POST['use
 	exit('Please complete the registration form');
 }
 
+if(isset($_POST['g-recaptcha-response'])){
+	$captcha=$_POST['g-recaptcha-response'];
+  }
+  if(!$captcha){
+	echo '<h2>Please check the the captcha form.</h2>';
+	exit;
+  }
+  $secretKey = "6LfOowQaAAAAABoT1fDzW49bgvjrQJHZPnP48yjE";
+  $ip = $_SERVER['REMOTE_ADDR'];
+  // post request to server
+  $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($captcha);
+  $response = file_get_contents($url);
+  $responseKeys = json_decode($response,true);
+  // should return JSON with success as true
+  if($responseKeys["success"]) {
+		  echo '<h2>Thanks for being human</h2>';
+  } else {
+		  echo '<h2>You are spammer ! Get out</h2>';
+  }
+
 if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 	exit('Email is not valid!');
 }

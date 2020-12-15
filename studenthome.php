@@ -31,7 +31,7 @@ if (!isset($_SESSION['studentloggedin'])) {
 
 <body class="studentloggedin">
 	<nav class="navbar navbar-expand-lg navbar-light">
-		<a class="navbar-brand" href="#">EzeTuition</a>
+		<a class="navbar-brand" href="studenthome.php">EzeTuition</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -66,12 +66,7 @@ if (!isset($_SESSION['studentloggedin'])) {
         <h1 class="card-title h2 my-4 py-2">EzeTuition</h2>
         <h2 class="mb-4 pb-2 px-md-5 mx-md-5">Learn new skills or share your skills</h2>
         <div class="col-sm">
-			<div class= "text-center my-5">
-			<form class="form-inline md-form mr-auto mb-4">
-				<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-				<button class="btn peach-gradient btn-rounded btn-sm my-0" type="submit">Search</button>
-		  </form>
-		  </div>
+			
         </div>
       </div>
     </div>
@@ -79,60 +74,9 @@ if (!isset($_SESSION['studentloggedin'])) {
   <!-- Jumbotron -->
       <br>
 
-    <h1>Featured courses</h1>
+    <h1>View all the courses you can enroll in</h1>
     <br>
-      <div class="container featured-courses">
-        <div class="row text-center">
-          <div class="col-4">
-            <!-- Card -->
-            <div class="card">
-            
-              <!-- Card image -->
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
-            
-              <!-- Card content -->
-              <div class="card-body">
-            
-                <!-- Title -->
-                <h4 class="card-title"><a>Course</a></h4>
-                <!-- Text -->
-                <p class="card-text">Some quick example text to build on the card</p>
-                <!-- Button -->
-                <a href="coursedetails.html" class="btn btn-primary">Button</a>
-            
-              </div>
-            
-            </div>
-            <!-- Card --></div><!--
-      --><div class="col-4"><!-- Card -->
-            <div class="card">
-            
-              <!-- Card image -->
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
-            
-              <!-- Card content -->
-              <div class="card-body">
-            
-                <!-- Title -->
-                <h4 class="card-title"><a>Course</a></h4>
-                <!-- Text -->
-                <p class="card-text">Some quick example text to build on the card</p>
-                <!-- Button -->
-                <a href="coursedetails.html" class="btn btn-primary">Button</a>
-            
-              </div>
-            
-            </div>
-            <!-- Card --></div><!--
-      --><div class="col-4">3</div><!--
-      --><div class="col-4">4</div><!--
-      --><div class="col-4">5</div><!--
-      --><div class="col-4">6</div><!--
-      --><div class="col-4">7</div><!--
-      --><div class="col-4">8</div><!--
-      --><div class="col-4">9</div>
-        </div>
-      </div>
+    <a href="courselist.php" class="btn btn-warning">View courses</a>
   </main>
   <!--Main Layout-->
 	

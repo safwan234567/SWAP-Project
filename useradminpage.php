@@ -68,6 +68,7 @@
     <br>
     <div class="container">
     <b><h1>User Admin</h1></b>
+    <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
         <p>.</p>
       </div>
 <br>
@@ -119,6 +120,12 @@ $DATABASE_NAME = 'tuitionwebsite';
 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
 if (mysqli_connect_errno()) {
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
+}
+session_start();
+// If the user is not logged in redirect to the login page...
+if (!isset($_SESSION['useradminloggedin'])) {
+	header('Location: index.html');
+	exit;
 }
 else {
     $query= $con->prepare("Select id, firstname, lastname, username, password, phonenumber, email, role from accounts");

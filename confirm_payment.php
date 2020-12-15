@@ -117,7 +117,7 @@ $query->fetch();
 <input type='hidden' name='name' value='<?php echo $name?>'>
 <input type="submit" class="w3-button w3-black" value="Use another card">
 </form>
-<form action="courselist.html" method="post">
+<form action="courselist.php" method="post">
 <input type="submit" class="w3-button w3-black" value="confirm">
 
 

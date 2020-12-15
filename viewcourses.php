@@ -115,7 +115,7 @@ form {
   </body>
   </html>
   <html>
-<form action="addcourse.html" method="post">
+<form action="addcourse.php" method="post">
 <div class="addcourse">
 <input type="submit" value="Add course" name="submit">
 </form>
@@ -139,7 +139,7 @@ if (mysqli_connect_errno()) {
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
 else {
-    $teacherID=$_SESSION['teacherID'];
+    $teacherID=$_SESSION['id'];
     $query= $con->prepare("Select coursename, coursedesc, tutorinfo, price, numberoflectures, myFile from courses WHERE teacherID=?");
     $query->bind_param('i',$teacherID);
     $query->execute();

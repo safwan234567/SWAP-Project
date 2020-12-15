@@ -1,5 +1,10 @@
 <?php 
-session_regenerate_id();
+session_start();
+// If the user is not logged in redirect to the login page...
+if (!isset($_SESSION['studentloggedin'])) {
+	header('Location: index.html');
+	exit;
+}
 
 ?>
 

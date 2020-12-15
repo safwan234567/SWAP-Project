@@ -75,74 +75,16 @@ if (!isset($_SESSION['tutorloggedin'])) {
         <!-- Content -->
         <h1 class="card-title h2 my-4 py-2">EzeTuition</h2>
         <h2 class="mb-4 pb-2 px-md-5 mx-md-5">Learn new skills or share your skills</h2>
-        <div class="col-sm">
-		<div class= "text-center my-5">
-          <form class="form-inline md-form mr-auto">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn peach-gradient btn-rounded btn-sm my-0" type="submit">Search</button>
-		  </form>
-		</div>
-        </div>
+       <br>
+       <a href="tutorprofile.php"class="btn btn-success"><i class="fas fa-clone left"></i>View profile to view submitted courses</a>        
+      </div>
       </div>
     </div>
   </div>
   <!-- Jumbotron -->
       <br>
 
-    <h1>Featured courses</h1>
-    <br>
-      <div class="container featured-courses">
-        <div class="row text-center">
-          <div class="col-4">
-            <!-- Card -->
-            <div class="card">
-            
-              <!-- Card image -->
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
-            
-              <!-- Card content -->
-              <div class="card-body">
-            
-                <!-- Title -->
-                <h4 class="card-title"><a>Course</a></h4>
-                <!-- Text -->
-                <p class="card-text">Some quick example text to build on the card</p>
-                <!-- Button -->
-                <a href="coursedetails.html" class="btn btn-primary">Button</a>
-            
-              </div>
-            
-            </div>
-            <!-- Card --></div><!--
-      --><div class="col-4"><!-- Card -->
-            <div class="card">
-            
-              <!-- Card image -->
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
-            
-              <!-- Card content -->
-              <div class="card-body">
-            
-                <!-- Title -->
-                <h4 class="card-title"><a>Course</a></h4>
-                <!-- Text -->
-                <p class="card-text">Some quick example text to build on the card</p>
-                <!-- Button -->
-                <a href="coursedetails.html" class="btn btn-primary">Button</a>
-            
-              </div>
-            
-            </div>
-            <!-- Card --></div><!--
-      --><div class="col-4">3</div><!--
-      --><div class="col-4">4</div><!--
-      --><div class="col-4">5</div><!--
-      --><div class="col-4">6</div><!--
-      --><div class="col-4">7</div><!--
-      --><div class="col-4">8</div><!--
-      --><div class="col-4">9</div>
-        </div>
-      </div>
+    
   </main>
   <!--Main Layout-->
 	

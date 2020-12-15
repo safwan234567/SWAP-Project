@@ -41,7 +41,7 @@ $query->bind_param('sssss' , $name, $hash_number, $expiry, $cvv, $name);
 if ($query->execute()){  //execute query
     
     echo 'You have successfully edited your details! Redirecting you in a bit!';
-    header("refresh:1;url=courselist.html");
+    header("refresh:1;url=courselist.php");
 }else{
     echo $query->error;
     echo "Error executing query.";

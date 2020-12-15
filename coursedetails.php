@@ -50,16 +50,15 @@ else {
   <!-- Start your project here-->  
 
   <body class="studentloggedin">
-    <!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light">
-		<a class="navbar-brand" href="tutorhome.php">EzeTuition</a>
+		<a class="navbar-brand" href="studenthome.php">EzeTuition</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a href="tutorprofile.php"><i class="fas fa-user-circle"></i>Profile</a>
+					<a href="studentprofile.php"><i class="fas fa-user-circle"></i>Profile</a>
 				</li>
 				<li class="nav-item">
 					<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
@@ -67,7 +66,7 @@ else {
 				</li>
 			</ul>
 		</div>
-    </nav>
+	</nav>
     <!-- Navbar end -->';
 
     
@@ -96,7 +95,7 @@ if ($query->fetch()){
           <p class="card-text" style="font-weight: bold; font-size: medium;">Read more</p>
           <p class="card-text" style="font-size: x-large; color: red;"> '.$price.' </p>
           <!-- Button -->
-          <a href="#" class="btn btn-primary">purchase now</a>
+          <a href="payment.php" class="btn btn-primary">purchase now</a>
           <a href="#" class="btn btn-primary">Add to Cart</a>
       
         </div>
@@ -117,8 +116,8 @@ if ($query->fetch()){
           <p class="card-text">
           Some quick example text to build on the card title and make up the bulk of the cards content.</p>
           <!-- Button -->
-          <a href="#" class="btn btn-primary">Add a review</a>
-      
+          <a href="addReview.php" class="btn btn-primary">Add a review</a>
+          <a href="review.php" class="btn btn-primary">All reviews</a>
         </div>
       
       </div>

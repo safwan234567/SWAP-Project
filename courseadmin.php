@@ -30,26 +30,8 @@
       </style>
 </head>
 
-<body class="tutorloggedin">
-    <!-- Navbar -->
-	<nav class="navbar navbar-expand-lg navbar-light">
-		<a class="navbar-brand" href="tutorhome.php">EzeTuition</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav">
-				<li class="nav-item">
-					<a href="tutorprofile.php"><i class="fas fa-user-circle"></i>Profile</a>
-				</li>
-				<li class="nav-item">
-					<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
-				</li>
-				</li>
-			</ul>
-		</div>
-    </nav>
-    <!-- Navbar end -->
+<body>
+  
 	<!DOCTYPE html>
 <html>
 
@@ -82,11 +64,12 @@
       </style>
 </head>
 
-<body class="tutorloggedin">
+<body>
     <br>
     <div class="container">
         <h1>Courses</h1>
         <p>ADMIN COURSE PAGE</p>
+        <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
       </div>
 <br>
 <div class="card">
@@ -114,11 +97,11 @@ form {
   
   </body>
   </html>
-  <?php
+  <?php 
 // We need to use sessions, so you should always start sessions using the below code.
 session_start();
 // If the user is not logged in redirect to the login page...
-if (!isset($_SESSION['tutorloggedin'])) {
+if (!isset($_SESSION['useradminloggedin'])) {
 	header('Location: index.html');
 	exit;
 }

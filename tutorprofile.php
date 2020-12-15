@@ -6,6 +6,7 @@ if (!isset($_SESSION['tutorloggedin'])) {
 	header('Location: index.html');
 	exit;
 }
+
 $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'root';
 $DATABASE_PASS = '';
@@ -131,8 +132,8 @@ $stmt->close();
 		
 	</div>
 	<div class="card" style="width: 40%; height: 50%; margin: auto; margin-top:2%;">
-	<h2>Courses you are teaching(1)</h2>
-				<a href="editcourse.html" class="btn">Introduction to Web Design</a>
+	<h2>Courses you are teaching</h2>
+				<a href="viewcourses.php" class="btn">View courses</a>
 				<a href="addcourse.php" class="btn btn-warning">Add Course</a>
 	</div>
 	<div class="card" style="width: 40%; height: 50%; margin: auto; margin-top:2%;">

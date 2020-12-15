@@ -1,79 +1,155 @@
 <?php
-// We need to use sessions, so you should always start sessions using the below code.
 session_start();
-// If the user is not logged in redirect to the login page...
-if (!isset($_SESSION['tutorloggedin'])) {
-	header('Location: index.html');
-	exit;
-}
-$DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'root';
-$DATABASE_PASS = '';
-$DATABASE_NAME = 'tuitionwebsite';
-$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
-if (mysqli_connect_errno()) {
-	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
-}
-
-// Now we check if the data was submitted, isset() function will check if the data exists.
-if (!isset($_POST['coursename'], $_POST['coursedesc'], $_POST['tutorinfo'], $_POST['price'], $_POST['numberoflectures'])) {
-	// Could not get the data that should have been sent.
-	exit('Please complete the form!');
-}
-// Make sure the submitted registration values are not empty.
-if (empty($_POST['coursename']) || empty($_POST['coursedesc']) || empty($_POST['tutorinfo']) || empty($_POST['price']) || empty($_POST['numberoflectures'])) {
-	// One or more values are empty.
-	exit('Please complete the form');
-}
-
-if (preg_match('/[A-Za-z0-9]+/', $_POST['coursename']) == 0) {
-    exit('coursename is not valid!');
-}
-
-if (preg_match('/[A-Za-z0-9]+/', $_POST['coursedesc']) == 0) {
-    exit('coursedesc is not valid!');
-}
-
-if (preg_match('/[A-Za-z0-9]+/', $_POST['tutorinfo']) == 0) {
-    exit('tutorinfo is not valid!');
-}
-if (preg_match('/^[0-9]+(?:\.[0-9]+)?$/', $_POST['price']) == 0) {
-    exit('price is not valid!');
-}
-
-if (preg_match('/[0-9]+/', $_POST['numberoflectures']) == 0) {
-    exit('numberoflectures is not valid!');
-}
-
-// We need to check if the account with that username exists.
-if ($stmt = $con->prepare('SELECT id FROM courses WHERE coursename = ?')) {
-	// Bind parameters (s = string, i = int, b = blob, etc), hash the password using the PHP password_hash function.
-	$stmt->bind_param('s', $_POST['coursename']);
-	$stmt->execute();
-	$stmt->store_result();
-	// Store the result so we can check if the account exists in the database.
-	if ($stmt->num_rows > 0) {
-		// Username already exists
-		echo 'coursename exists, please choose another!';
-	} else {
-		// Username doesnt exists, insert new account
-
-if ($stmt = $con->prepare('INSERT INTO courses (teacherID, coursename, coursedesc, tutorinfo, price, numberoflectures) VALUES (?,?,? ,?,?,?)')) {
-	// We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
-	$stmt->bind_param('ssssii', $_SESSION['teacherID'], $_POST['coursename'], $_POST['coursedesc'], $_POST['tutorinfo'], $_POST['price'], $_POST['numberoflectures']);
-	$stmt->execute();
-    echo 'You have successfully created a course! Redirecting you in a bit!';
-    header("refresh:1;url=viewcourses.php");
-} else {
-	// Something is wrong with the sql statement, check to make sure students table exists with all 3 fields.
-	echo 'Could not prepare statement!';
-}
-	}
-	$stmt->close();
-} else {
-	// Something is wrong with the sql statement, check to make sure students table exists with all 3 fields.
-	echo 'Could not prepare statement!';
-}
-$con->close();
-
 ?>
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Home Page</title>
+	<link href="style.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+	<!-- MDB icon -->
+	<link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+	<!-- Google Fonts Roboto -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- Material Design Bootstrap -->
+	<link rel="stylesheet" href="css/mdb.min.css">
+	<!-- Your custom styles (optional) -->
+	<link rel="stylesheet" href="css/style.css">
+	<style>
+    .featured-courses > .row {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+      .featured-courses > .row > .col-4 {
+        display: inline-block;
+      }
+      </style>
+</head>
+
+<body class="tutorloggedin">
+    <!-- Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light">
+		<a class="navbar-brand" href="tutorhome.php">EzeTuition</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a href="tutorprofile.php"><i class="fas fa-user-circle"></i>Profile</a>
+				</li>
+				<li class="nav-item">
+					<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+				</li>
+				</li>
+			</ul>
+		</div>
+    </nav>
+    <!-- Navbar end -->
+	<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Home Page</title>
+	<link href="style.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+	<!-- MDB icon -->
+	<link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+	<!-- Google Fonts Roboto -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- Material Design Bootstrap -->
+	<link rel="stylesheet" href="css/mdb.min.css">
+	<!-- Your custom styles (optional) -->
+	<link rel="stylesheet" href="css/style.css">
+	<style>
+    .featured-courses > .row {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+      .featured-courses > .row > .col-4 {
+        display: inline-block;
+      }
+      </style>
+</head>
+
+<body class="tutorloggedin">
+<br>
+    <div class="container">
+        <h1>Add course</h1>
+        <p>Fill in the options below</p>
+      </div>
+<br>
+<div class="card">
+    <br>
+    <style type="text/css">
+    body {
+    text-align: center;
+}
+form {	
+    display: inline-block;
+    
+}</style>
+<form action="addcourse1.php" method="post" autocomplete="off">
+  <div class="addcourse">
+      
+      <label for="coursename">
+        <i class="fas fa-user"></i>
+      </label>
+      <input type="text" name="coursename" placeholder="Course Name:" id="coursename" required>
+      <br>
+      
+      <label for="coursedesc">
+        <i class="fas fa-book"></i>
+      </label>
+      <input type="coursedesc" name="coursedesc" placeholder="Course Description:" id="coursedesc" required>
+      <br>
+
+      <label for="tutorinfo">
+        <i class="fas fa-address-book"></i>
+      </label>
+      <input type="text" name="tutorinfo" placeholder="Tutor information:" id="tutorinfo" required>
+      <br>
+
+      <label for="price">
+        <i class="fas fa-dollar-sign"></i>
+      </label>
+      <input type="text" name="price" placeholder="Price:" id="price" required>
+      <br>
+
+      <label for="numberoflectures">
+        <i class="fas fa-book-open"></i>
+      </label>
+      <input type="text" name="numberoflectures" placeholder="Number of lectures:" id="numberoflectures" required>
+      <br>
+      <br>  
+      
+        <input type="submit" value="Add course" name="submit">
+      </form>
+      <br>
+	</form>
+<br>
+</div>
+
+
+
+</body>
+</html>
+      
+
+
+
+</body>
+</html>
