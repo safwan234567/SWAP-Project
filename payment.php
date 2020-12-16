@@ -5,7 +5,7 @@ if (!isset($_SESSION['studentloggedin'])) {
 	header('Location: index.html');
 	exit;
 }
-$con = mysqli_connect("localhost","root","","tuitionwebsite");
+
 ?>
 
 <html>
@@ -169,25 +169,13 @@ span.price {
 </div>
 <div class="col-25">
 <div class="container">
-<?php
-
-
-
-$coursename=$_POST['coursename'];
-
-$query= $con->prepare("Select coursename, price from courses WHERE coursename=?");
-$query->bind_param('s', $coursename);
-$query->execute();
-$query->store_result();
-$query->bind_result($coursename, $price);
-?>
 <h4>product summary <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i></span></h4>
 <br>
-<p><?php $coursename?> <span class="price"><?php $price?></span></p>
+<p>tution fee <span class="price">$50</span></p>
 
 
 <hr>
-<p>Total <span class="price" style="color:black"><b><?php $price?></b></span></p>
+<p>Total <span class="price" style="color:black"><b>$50</b></span></p>
 </div>
 </div>
 </div>
