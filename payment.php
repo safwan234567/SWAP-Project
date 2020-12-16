@@ -5,7 +5,7 @@ if (!isset($_SESSION['studentloggedin'])) {
 	header('Location: index.html');
 	exit;
 }
-
+$con = mysqli_connect("localhost","root","","tuitionwebsite");
 ?>
 
 <html>
@@ -169,7 +169,10 @@ span.price {
 </div>
 <div class="col-25">
 <div class="container">
-<?php 
+<?php
+
+
+
 $coursename=$_POST['coursename'];
 
 $query= $con->prepare("Select coursename, price from courses WHERE coursename=?");
